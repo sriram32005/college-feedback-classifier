@@ -5,23 +5,18 @@ import streamlit as st
 import pandas as pd
 import time
 import ibm_boto3
-import os
-from dotenv import load_dotenv
 from botocore.client import Config
 from ibm_watson_machine_learning.foundation_models import Model
 from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 from ibm_watson_machine_learning.metanames import GenTextParamsMetaNames as GenParams
 import types
 
-# Load environment variables from .env file
-load_dotenv()
-
 # --- IBM Cloud Configuration ---
 CREDENTIALS = {
     "url": "https://us-south.ml.cloud.ibm.com",
-    "apikey": os.getenv("IBM_API_KEY")  # From .env file
+    "apikey": "ARULBypitCg6liH-9n7MLnP-d7b50anbnA4YtUsonw5-"
 }
-PROJECT_ID = os.getenv("IBM_PROJECT_ID")  # From .env file
+PROJECT_ID = "b42556a3-9788-4c09-a272-2807738016cb"  
 MODEL_ID = ModelTypes.FLAN_T5_XXL
 
 # --- Helper Functions ---
@@ -31,7 +26,7 @@ def load_data_from_cos(bucket_name, object_key):
     
     cos_client = ibm_boto3.client(
         service_name='s3',
-        ibm_api_key_id=os.getenv("COS_API_KEY"),  # From .env file
+        ibm_api_key_id='K_iylTzBQahcovWR0R1HcBL2WbtfaIR0xiAJ_Rjsu5tV',
         ibm_auth_endpoint="https://iam.cloud.ibm.com/identity/token",
         config=Config(signature_version='oauth'),
         endpoint_url='https://s3.us-south.cloud-object-storage.appdomain.cloud'
@@ -148,23 +143,19 @@ def main():
     </div>
     """, unsafe_allow_html=True)
     
-    # Verify credentials
-    if not CREDENTIALS["apikey"] or not PROJECT_ID:
-        st.error("Missing IBM Cloud credentials. Please check your .env file")
-        return
-    
     # Load data from IBM Cloud
-    bucket_name = os.getenv("COS_BUCKET", "collegefeedbackclassifier-donotdelete-pr-ejz40fmj7wizdg")
+    st.sidebar.subheader("Data Configuration")
+    st.sidebar.info("Loading data from IBM Cloud Object Storage")
     
     with st.spinner("Loading training data from cloud..."):
         train_data = load_data_from_cos(
-            bucket_name=bucket_name,
+            bucket_name='collegefeedbackclassifier-donotdelete-pr-ejz40fmj7wizdg',
             object_key='feedack_train_1.csv'
         )
     
     with st.spinner("Loading test data from cloud..."):
         test_data = load_data_from_cos(
-            bucket_name=bucket_name,
+            bucket_name='collegefeedbackclassifier-donotdelete-pr-ejz40fmj7wizdg',
             object_key='feedack_test_1.csv'
         )
     

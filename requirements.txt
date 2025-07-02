@@ -1,11 +1,8 @@
-python==3.11.*
 streamlit==1.32.2
 pandas==2.1.4
 ibm-cos-sdk==2.13.0
 botocore==1.31.13
 ibm-watson-machine-learning==1.0.312
+python-dotenv==1.0.1
 types
-
-# python3.11 -m venv venv
-# source venv/bin/activate
-# pip install -r requirements.txt
+python==3.11.*
