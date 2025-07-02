@@ -16,7 +16,7 @@ CREDENTIALS = {
     "url": "https://us-south.ml.cloud.ibm.com",
     "apikey": "ARULBypitCg6liH-9n7MLnP-d7b50anbnA4YtUsonw5-"
 }
-PROJECT_ID = "YOUR_PROJECT_ID"  # Replace with your actual Project ID
+PROJECT_ID = "b42556a3-9788-4c09-a272-2807738016cb"  
 MODEL_ID = ModelTypes.FLAN_T5_XXL
 
 # --- Helper Functions ---
@@ -29,7 +29,7 @@ def load_data_from_cos(bucket_name, object_key):
         ibm_api_key_id='K_iylTzBQahcovWR0R1HcBL2WbtfaIR0xiAJ_Rjsu5tV',
         ibm_auth_endpoint="https://iam.cloud.ibm.com/identity/token",
         config=Config(signature_version='oauth'),
-        endpoint_url='https://s3.direct.us-south.cloud-object-storage.appdomain.cloud'
+        endpoint_url='https://s3.us-south.cloud-object-storage.appdomain.cloud'
     )
     
     try:
@@ -91,7 +91,7 @@ def main():
     st.markdown("""
     <style>
     .stApp {
-        background-color: #f5f9ff;
+        background-color: #808080;
     }
     .header {
         background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
@@ -101,7 +101,7 @@ def main():
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
     .result-box {
-        background: white;
+        background: black;
         border-radius: 15px;
         padding: 1.5rem;
         margin-top: 1rem;
