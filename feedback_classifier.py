@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import streamlit as st
 import pandas as pd
 import time
@@ -16,7 +13,7 @@ import types
 # Load environment variables from .env file
 load_dotenv()
 
-# --- IBM Cloud Configuration ---
+# IBM Cloud Configuration
 CREDENTIALS = {
     "url": "https://us-south.ml.cloud.ibm.com",
     "apikey": os.getenv("IBM_API_KEY")  # From .env file
@@ -24,7 +21,7 @@ CREDENTIALS = {
 PROJECT_ID = os.getenv("IBM_PROJECT_ID")  # From .env file
 MODEL_ID = ModelTypes.FLAN_T5_XXL
 
-# --- Helper Functions ---
+
 def load_data_from_cos(bucket_name, object_key):
     """Load data from IBM Cloud Object Storage"""
     def __iter__(self): return 0
@@ -82,7 +79,7 @@ def predict_theme(model, prompt):
         st.error(f"Model prediction failed: {e}")
         return None
 
-# --- Main Application ---
+# Main Application 
 def main():
     # Page Configuration
     st.set_page_config(
